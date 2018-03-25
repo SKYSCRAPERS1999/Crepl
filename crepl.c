@@ -68,7 +68,7 @@ int main() {
 			if (pid == 0){
 				if (isf){
 					char* myargs[20];
-					myargs[0] = strdup("gcc");
+					myargs[0] = strdup("/usr/bin/gcc");
 					myargs[1] = strdup("-shared");
 					myargs[2] = strdup("-o");
 					myargs[3] = strdup(strcat(name, ".so"));
