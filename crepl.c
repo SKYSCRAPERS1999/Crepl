@@ -72,12 +72,13 @@ int main() {
 					myargs[1] = strdup("-shared");
 					myargs[2] = strdup("-o");
 					myargs[3] = strdup(strcat(name, ".so"));
-					myargs[4] = strdup("-fPIC");
-					myargs[5] = strdup(filename);
-					myargs[6] = NULL;
+					myargs[4] = strdup(strcat(name, ".so"));
+					myargs[5] = strdup( "-x");
+					myargs[6] = strdup("c");
+					myargs[7] = strdup(filename);
+					myargs[8] = NULL;
 					execvp(myargs[0], myargs);
 					
-					close(fd);
 				}else{
 					
 				}
