@@ -46,8 +46,9 @@ int main() {
 			int isf = is_func(op, n, name);
 		
 			char filename[50]; strcpy(filename, strcat(name, ".c"));
+			printf("%s\n",filename);
 			int fd = mkstemp(filename);
-
+	
 			printf("Temporary file created\n");
 			
 			if (write(fd, op, maxn - 1) == -1){
