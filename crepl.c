@@ -16,7 +16,7 @@ int main() {
 	while (1){
 		putchar('$');
 		char op[maxn];
-		bool ok = fgets(op, maxn - 1, stdin);
+		int ok = fgets(op, maxn - 1, stdin);
 		if (!ok){
 			puts("");
 			continue;
