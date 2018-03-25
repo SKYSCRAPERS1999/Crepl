@@ -9,6 +9,7 @@
 #include <assert.h>
 #include <ctype.h>
 #include <time.h>
+#include <dlfcn.h>
 
 #define maxn 1024
 char* strdup(const char * s);
@@ -81,7 +82,12 @@ int main() {
 					execvp(myargs[0], myargs);
 				    
 				}else{
-					
+					wait(NULL);	
+					void* handle = dlopen(strcat(name, ".so"), RTLD_LAZY);
+					if (!handle) {
+		                perror("open error!\n");
+						exit(1);
+		            }
 				}
 
 			}else{
