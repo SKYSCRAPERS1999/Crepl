@@ -36,13 +36,13 @@ int main() {
 		printf("$ ");
 		char op[maxn];
 		char* ok = fgets(op, maxn - 1, stdin);
-		if (ok != NULL){
+		if (ok == NULL){
 			puts("");
 			continue;
 		}else{
 		    int n = strlen(op);
-			printf("Temporary file created\n");
 			FILE* fp = tmpfile();
+			printf("Temporary file created\n");
 			
 			fwrite(op, 1, sizeof(op), fp);
 			int pid = fork();
