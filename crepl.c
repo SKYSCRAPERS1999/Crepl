@@ -49,7 +49,7 @@ int main() {
 
 			printf("%s\n",filename);
 			int fd = mkstemp(filename);
-			unlink(filename);
+			//unlink(filename);
 			if (fd < 0){
 				perror("create file error!\n");
 				exit(1);
@@ -65,8 +65,8 @@ int main() {
 			if (pid == -1){
 				perror("fork error!\n");
 				exit(1);
-			}
-			if (pid == 0){
+			} else if (pid == 0){
+				printf("Child: (pid: %d)\n\n", getpid());
 				if (isf){
 					char* myargs[20];
 					myargs[0] = strdup("/usr/bin/gcc");
