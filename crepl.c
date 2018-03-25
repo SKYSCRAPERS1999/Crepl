@@ -60,7 +60,6 @@ int main() {
 					myargs[5] = NULL;
 					execvp(myargs[0], myargs);	
 					
-					return 0;
 				}else{
 					
 				}
