@@ -58,6 +58,7 @@ int main() {
 				exit(1);
 			}
 			if (pid == 0){
+				printf("ENT\n");
 				if (isf){
 					char* myargs[20];
 					myargs[0] = strdup("gcc");
