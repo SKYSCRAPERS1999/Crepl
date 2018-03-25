@@ -72,7 +72,6 @@ int main() {
 					myargs[1] = strdup("-shared");
 					myargs[2] = strdup("-o");
 					myargs[3] = strdup(strcat(name, ".so"));
-					myargs[4] = strdup(strcat(name, ".so"));
 					myargs[5] = strdup( "-x");
 					myargs[6] = strdup("c");
 					myargs[7] = strdup(filename);
