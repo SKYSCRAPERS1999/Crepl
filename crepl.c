@@ -48,10 +48,10 @@ int main() {
 			char filename[50]; strcpy(filename, strcat(name, ".c"));
 			printf("%s\n",filename);
 			int fd = mkstemp(filename);
-	
+			unlink(filename);	
 			printf("Temporary file created\n");
 			
-			if (write(fd, op, strlen(op)) == -1){
+			if (write(fd, op, n) == -1){
 				perror("write error!\n");
 				exit(1);
 			}
