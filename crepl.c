@@ -68,6 +68,7 @@ int main() {
 			} else if (pid == 0){
 				printf("Child: (pid: %d)\n\n", getpid());
 				if (isf){
+					printf("ENT\n");
 					char* myargs[20];
 					myargs[0] = strdup("/usr/bin/gcc");
 					myargs[1] = strdup("-shared");
