@@ -77,9 +77,6 @@ int main() {
 					myargs[6] = NULL;
 					execvp(myargs[0], myargs);
 
-					perror("execve error!\n");
-					exit(1);
-					
 				}else{
 					
 				}
