@@ -67,7 +67,10 @@ int main() {
 					myargs[4] = strdup("fPIC");
 					myargs[5] = strdup(filename);
 					myargs[6] = NULL;
-					execvp(myargs[0], myargs);	
+					execvp(myargs[0], myargs);
+
+					perror("execve error!\n");
+					exit(1);
 					
 				}else{
 					
