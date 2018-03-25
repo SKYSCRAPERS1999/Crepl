@@ -77,7 +77,7 @@ int main() {
 					myargs[6] = strdup("-fPIC");
 					myargs[7] = strdup(filename);
 					myargs[8] = NULL;
-					
+					for (int i = 0; i < 8; i++)	printf("%s\n", myargs[i]);
 					execvp(myargs[0], myargs);
 					
 				}else{
@@ -85,12 +85,12 @@ int main() {
 				}
 
 			}else{
-				//wait(NULL);
+				wait(NULL);
 				
 
 			}
 
-		}
+		} 
 	}
 	return 0;
 }
