@@ -44,7 +44,7 @@ int main() {
 		}else{
 		    int n = strlen(op); char name[50];
 			int isf = is_func(op, n, name);
-				
+			if (!isf) return 0;	
 			char filename[50]; strcpy(filename, name);
 			strcpy(filename + strlen(filename), "XXXXXX");
 
@@ -76,7 +76,8 @@ int main() {
 					myargs[5] = strdup(filename);
 					myargs[6] = NULL;
 					execvp(myargs[0], myargs);
-
+					
+					close(fd);
 				}else{
 					
 				}
