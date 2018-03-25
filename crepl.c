@@ -46,6 +46,7 @@ int main() {
 			int isf = is_func(op, n, name);
 				
 			char filename[50]; strcpy(filename, name);
+			strcpy(filename + strlen(filename), "XXXXXX");
 
 			printf("%s\n",filename);
 			int fd = mkstemp(filename);
@@ -69,7 +70,7 @@ int main() {
 					myargs[1] = strdup("-shared");
 					myargs[2] = strdup("-o");
 					myargs[3] = strdup(strcat(name, ".so"));
-					myargs[4] = strdup("fPIC");
+					myargs[4] = strdup("-fPIC");
 					myargs[5] = strdup(filename);
 					myargs[6] = NULL;
 					execvp(myargs[0], myargs);
