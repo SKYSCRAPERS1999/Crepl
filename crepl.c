@@ -45,9 +45,10 @@ int main() {
 		    int n = strlen(op); char name[50];
 			int isf = is_func(op, n, name);
 		
-			char filename[50]; strcpy(filename, "123456");
+			char filename[50]; strcpy(filename, strcat(strdup("template-"), name));
 			printf("%s\n",filename);
 			int fd = mkstemp(filename);
+			printf("fd = %d\n",fd);
 			unlink(filename);	
 			printf("Temporary file created\n");
 			
