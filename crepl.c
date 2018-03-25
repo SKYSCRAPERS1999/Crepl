@@ -21,9 +21,9 @@ int is_func(char* s, int n, char* name){
 	}
 	if (ok == 0) return 0;
 	for ( ; i + 1 < n; i++){
-		if (s[i] == '('){
-			while (i + 1 < n && s[i + 1] != ')'){
-				name[j++] = s[++i];
+		if (isalpha(s[i]) || s[i] == '_'){
+			while (i < n && s[i] != '('){
+				name[j++] = s[i++];
 			}
 			name[j] = '\0';
 			return 1;
@@ -43,7 +43,6 @@ int main() {
 		    int n = strlen(op); char name[50];
 			int isf = is_func(op, n, name);
 		
-			printf("name=%s\n",name);
 			char* filename = strdup(strcat(name, ".c"));
 			int fd = mkstemp(filename);
 
