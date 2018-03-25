@@ -49,6 +49,7 @@ int main() {
 
 			printf("%s\n",filename);
 			int fd = mkstemp(filename);
+			unlink(filename);
 			if (fd < 0){
 				perror("create file error!\n");
 				exit(1);
