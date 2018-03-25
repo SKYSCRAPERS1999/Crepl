@@ -45,8 +45,7 @@ int main() {
 		    int n = strlen(op); char name[50];
 			int isf = is_func(op, n, name);
 				
-			char filename[50] = "template-";
-			strcpy(filename + strlen(filename), name);
+			char filename[50] = "template-123456";
 
 			printf("%s\n",filename);
 			int fd = mkstemp(filename);
