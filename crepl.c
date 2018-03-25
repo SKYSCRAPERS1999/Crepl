@@ -47,7 +47,7 @@ int main() {
 			int isf = is_func(op, n, name);
 			char filename[50]; strcpy(filename, name);
 			strcpy(filename + strlen(filename), "XXXXXX");
-
+			
 			printf("%s\n",filename);
 			int fd = mkstemp(filename);
 			unlink(filename);
@@ -61,7 +61,6 @@ int main() {
 				perror("write error!\n");
 				exit(1);
 			}
-			close(fd);
 			int pid = fork();
 			if (pid == -1){
 				perror("fork error!\n");
@@ -92,6 +91,7 @@ int main() {
 
 			}
 
+			close(fd);
 		} 
 	}
 	return 0;
