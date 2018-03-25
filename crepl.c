@@ -53,12 +53,14 @@ int main() {
 				if (is_func(op, n, name)){
 					char* myargs[20];
 					myargs[0] = strdup("gcc");
-					myargs[1] = strdup("-cg");
-					myargs[2] = strdup("-fPIC");
-					myargs[3] = strdup("-o");
-					myargs[4] = strdup(name);
-					execvp(myargs[0], myargs);
-
+					myargs[1] = strdup("-shared");
+					myargs[2] = strdup("-o");
+					myargs[3] = strdup(strcat(name, ".so"));
+					myargs[4] = strdup("fPIC");
+					myargs[5] = NULL;
+					execvp(myargs[0], myargs);	
+					
+					return 0;
 				}else{
 					
 				}
