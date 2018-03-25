@@ -41,8 +41,8 @@ int main() {
 			continue;
 		}else{
 		    int n = strlen(op);
-			FILE* fp = tmpfile();
 			printf("Temporary file created\n");
+			FILE* fp = tmpfile();
 			
 			fwrite(op, 1, sizeof(op), fp);
 			int pid = fork();
