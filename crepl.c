@@ -40,11 +40,13 @@ int main() {
 			puts("");
 			continue;
 		}else{
-		    int n = strlen(op);
+		    int n = strlen(op); char name[50];
+			int isf = is_func(op, n, name);
+
 			printf("Temporary file created\n");
 			
-			char* name = strdup(strcat(name, ".c"));
-			int fd = mkstemp(name);
+			char* filename = strdup(strcat(name, ".c"));
+			int fd = mkstemp(filename);
 			if (write(fd, op, maxn - 1) == -1){
 				perror("write error!\n");
 				exit(1);
@@ -55,15 +57,14 @@ int main() {
 				exit(1);
 			}
 			if (pid == 0){
-				char name[50];
-				if (is_func(op, n, name)){
+				if (isf){
 					char* myargs[20];
 					myargs[0] = strdup("gcc");
 					myargs[1] = strdup("-shared");
 					myargs[2] = strdup("-o");
 					myargs[3] = strdup(strcat(name, ".so"));
 					myargs[4] = strdup("fPIC");
-					myargs[5] = strdup(strcat(name, ".c"));
+					myargs[5] = strdup(filename);
 					execvp(myargs[0], myargs);	
 					
 				}else{
