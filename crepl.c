@@ -11,6 +11,7 @@
 #include <time.h>
 
 #define maxn 1024
+char* strdup(const char * s);
 
 int is_func(char* s, int n, char* name){
 	int i, j = 0; int ok = 0;
@@ -68,7 +69,6 @@ int main() {
 			} else if (pid == 0){
 				printf("Child: (pid: %d)\n\n", getpid());
 				if (isf){
-					printf("ENT\n");
 					char* myargs[20];
 					myargs[0] = strdup("/usr/bin/gcc");
 					myargs[1] = strdup("-shared");
