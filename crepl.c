@@ -44,7 +44,6 @@ int main() {
 		}else{
 		    int n = strlen(op); char name[50];
 			int isf = is_func(op, n, name);
-			printf("%d\n\n", isf);	
 			char filename[50]; strcpy(filename, name);
 			strcpy(filename + strlen(filename), "XXXXXX");
 
@@ -60,6 +59,7 @@ int main() {
 				perror("write error!\n");
 				exit(1);
 			}
+			close(fd);
 			int pid = fork();
 			if (pid == -1){
 				perror("fork error!\n");
@@ -79,7 +79,7 @@ int main() {
 					myargs[8] = NULL;
 					for (int i = 0; i < 8; i++)	printf("%s\n", myargs[i]);
 					execvp(myargs[0], myargs);
-					
+				    
 				}else{
 					
 				}
