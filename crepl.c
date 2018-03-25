@@ -44,7 +44,7 @@ int main() {
 		}else{
 		    int n = strlen(op); char name[50];
 			int isf = is_func(op, n, name);
-			
+			printf("%d\n\n", isf);	
 			char filename[50]; strcpy(filename, name);
 			strcpy(filename + strlen(filename), "XXXXXX");
 
