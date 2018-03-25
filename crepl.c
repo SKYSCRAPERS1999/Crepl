@@ -13,7 +13,7 @@
 #define maxn 1024
 
 int is_func(char* s, int n, char* name){
-	int i, j = 0; bool ok = 0;
+	int i, j = 0; int ok = 0;
 	for (i = 0; i + 3 < n; i++){
 		if (s[i] == 'i' && s[i + 1] == 'n' && s[i + 2] == 't'){
 			ok = 1; break;
