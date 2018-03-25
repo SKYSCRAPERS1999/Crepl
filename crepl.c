@@ -77,6 +77,8 @@ int main() {
 					myargs[6] = strdup("-fPIC");
 					myargs[7] = strdup(filename);
 					myargs[8] = NULL;
+					
+					printf("to exec\n");
 					execvp(myargs[0], myargs);
 					
 				}else{
