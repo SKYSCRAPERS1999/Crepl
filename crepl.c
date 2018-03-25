@@ -51,7 +51,7 @@ int main() {
 	
 			printf("Temporary file created\n");
 			
-			if (write(fd, op, maxn - 1) == -1){
+			if (write(fd, op, strlen(op)) == -1){
 				perror("write error!\n");
 				exit(1);
 			}
