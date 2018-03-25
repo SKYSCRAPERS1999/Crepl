@@ -42,9 +42,9 @@ int main() {
 		}else{
 		    int n = strlen(op); char name[50];
 			int isf = is_func(op, n, name);
-			
+		
 			char* filename = strdup(strcat(name, ".c"));
-			int fd = mkstemp(filename);
+			int fd = mkstemp(strdup(filename));
 
 			printf("Temporary file created\n");
 			
@@ -58,7 +58,6 @@ int main() {
 				exit(1);
 			}
 			if (pid == 0){
-				printf("ENT\n");
 				if (isf){
 					char* myargs[20];
 					myargs[0] = strdup("gcc");
