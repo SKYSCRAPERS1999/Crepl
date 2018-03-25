@@ -78,7 +78,6 @@ int main() {
 					myargs[7] = strdup(filename);
 					myargs[8] = NULL;
 					
-					printf("to exec\n");
 					execvp(myargs[0], myargs);
 					
 				}else{
