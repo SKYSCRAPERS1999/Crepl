@@ -42,11 +42,12 @@ int main() {
 		}else{
 		    int n = strlen(op); char name[50];
 			int isf = is_func(op, n, name);
-
-			printf("Temporary file created\n");
 			
 			char* filename = strdup(strcat(name, ".c"));
 			int fd = mkstemp(filename);
+
+			printf("Temporary file created\n");
+			
 			if (write(fd, op, maxn - 1) == -1){
 				perror("write error!\n");
 				exit(1);
