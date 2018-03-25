@@ -48,6 +48,7 @@ int main() {
 			char filename[50]; strcpy(filename, strcat(name, ".c"));
 			printf("%s\n",filename);
 			int fd = mkstemp(filename);
+			printf("fd = %d\n",fd);
 			unlink(filename);	
 			printf("Temporary file created\n");
 			
