@@ -50,8 +50,10 @@ int main() {
 
 			printf("%s\n",filename);
 			int fd = mkstemp(filename);
-			printf("fd = %d\n",fd);
-			unlink(filename);	
+			if (fd < 0){
+				perror("create file error!\n");
+				exit(1);
+			}
 			printf("Temporary file created\n");
 			
 			if (write(fd, op, n) == -1){
