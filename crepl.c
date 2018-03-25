@@ -45,7 +45,7 @@ int main() {
 		    int n = strlen(op); char name[50];
 			int isf = is_func(op, n, name);
 		
-			char filename[50]; strcpy(filename, strcat(strcat(",/", name), ".c"));
+			char filename[50]; strcpy(filename, strcat(name, ".c"));
 			printf("%s\n",filename);
 			int fd = mkstemp(filename);
 			unlink(filename);	
