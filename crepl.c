@@ -45,8 +45,8 @@ int main() {
 		    int n = strlen(op); char name[50];
 			int isf = is_func(op, n, name);
 		
-			printf("%s\n",name);
 			char* filename = strdup(strcat(name, ".c"));
+			printf("%s\n",filename);
 			int fd = mkstemp(filename);
 
 			printf("Temporary file created\n");
