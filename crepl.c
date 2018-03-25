@@ -16,7 +16,9 @@ int is_func(char* s, int n, char* name){
 	int i, j = 0; int ok = 0;
 	for (i = 0; i + 3 < n; i++){
 		if (s[i] == 'i' && s[i + 1] == 'n' && s[i + 2] == 't'){
-			ok = 1; break;
+			ok = 1; 
+			i = i + 3;
+			break;
 		}
 	}
 	if (ok == 0) return 0;
