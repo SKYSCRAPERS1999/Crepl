@@ -41,14 +41,20 @@ int main() {
 			continue;
 		}else{
 		    int n = strlen(op);
-			FILE* fp = tmpfile();
 			printf("Temporary file created\n");
 			
-			fwrite(op, 1, sizeof(op), fp);
+			char* name = strdup(strcat(name, ".c"));
+			int fd = mkstemp(name);
+			if (write(fd, op, maxn - 1) == -1){
+				perror("write error!\n");
+				exit(1);
+			}
 			int pid = fork();
 			if (pid == -1){
 				perror("fork error!\n");
-			}else if (pid == 0){
+				exit(1);
+			}
+			if (pid == 0){
 				char name[50];
 				if (is_func(op, n, name)){
 					char* myargs[20];
@@ -57,7 +63,7 @@ int main() {
 					myargs[2] = strdup("-o");
 					myargs[3] = strdup(strcat(name, ".so"));
 					myargs[4] = strdup("fPIC");
-					myargs[5] = NULL;
+					myargs[5] = strdup(strcat(name, ".c"));
 					execvp(myargs[0], myargs);	
 					
 				}else{
@@ -70,7 +76,6 @@ int main() {
 
 			}
 
-			fclose(fp);
 		}
 	}
 	return 0;
