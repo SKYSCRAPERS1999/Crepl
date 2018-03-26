@@ -16,6 +16,7 @@
 char func_list[maxn][50];
 int N = 0;
 char* strdup(const char * s);
+int mkstemp(char *);
 
 int is_func(char* s, int n, char* name){
 	int i, j = 0; int ok = 0;
