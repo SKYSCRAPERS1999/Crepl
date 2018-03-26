@@ -89,8 +89,9 @@ int main() {
 					exit(1);
 				}
 			}else{
-				rand_str(func_name, 5);	strcat(func_name, "_"); strcat(func_name, name);
+				rand_str(func_name, 5);	
 				printf("%s\n", func_name);	
+				strcat(func_name, "_"); strcat(func_name, name);
 				if (write(fd, func_name, strlen(func_name)) == -1 
 					|| write(fd, "(){return ", 10) == -1
 					|| write(fd, op, strlen(op)) == -1
