@@ -106,14 +106,15 @@ int main() {
 				}
 
 			}
-			int pid = fork();
+			int pid = fork(); int cc_ok = 0;
 			if (pid == -1){
 				perror("fork error!\n");
 				exit(1);
 			} else if (pid == 0){
 				//printf("Child: (pid: %d)\n\n", getpid());
+				char* myargs[20];
+			
 				if (isf){
-					char* myargs[20];
 					myargs[0] = strdup("/usr/bin/gcc");
 					myargs[1] = strdup("-shared");
 					myargs[2] = strdup("-g");
@@ -125,10 +126,7 @@ int main() {
 					myargs[8] = strdup(filename);
 					myargs[9] = NULL;
 					//for (int i = 0; i < 9; i++)	printf("%s\n", myargs[i]);
-					execvp(myargs[0], myargs);
-				    
 				}else{
-					
 					char* myargs[20];
 					myargs[0] = strdup("/usr/bin/gcc");
 					myargs[1] = strdup("-shared");
@@ -141,15 +139,19 @@ int main() {
 					myargs[8] = strdup(filename);
 					myargs[9] = NULL;
 					//for (int i = 0; i < 9; i++)	printf("%s\n", myargs[i]);
-					execvp(myargs[0], myargs);
-					
 				}
-
+				cc_ok = execvp(myargs[0], myargs);
+			
 			}else{
 				wait(NULL);
-			
+				
 				unlink(filename);
 				close(fd);
+				
+				if (cc_ok == -1){
+					perror(">> compile error!\n");
+					continue;
+				}
 				
 				char so_name[50] = "./";	
 				if (isf) strcat(so_name, name), strcat(so_name, ".so");
