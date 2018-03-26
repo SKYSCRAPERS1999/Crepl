@@ -50,7 +50,7 @@ char* rand_str(char *str, const int len){
     int i; char s[50];
     for (i = 0; i < len; ++i) s[i] = 'A' + rand() % 26;
     s[++i]= '\0';
-    //if (str[strlen(str) - 1] == ',') str[strlen(str) - 1] = '\0';
+	strcat(str, s);
 	return str;
 }
 
