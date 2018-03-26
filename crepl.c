@@ -50,7 +50,7 @@ char* rand_str(char *str, const int len){
     int i; char s[50];
     for (i = 0; i < len; ++i) s[i] = 'A' + rand() % 26;
     s[++i]= '\0';
-    if (str[strlen(str) - 1] == ',') str[strlen(str) - 1] = '\0';
+    //if (str[strlen(str) - 1] == ',') str[strlen(str) - 1] = '\0';
 	return str;
 }
 
@@ -161,28 +161,28 @@ int main() {
 					int value = func(); // 通过函数指针调用
 					printf(">> %s%d\n", op, value);	
 					
+					char* myargs[20];
+					myargs[0] = strdup("rm");
+					myargs[1] = strdup("-f");
+					myargs[2] = strdup(so_name);
+					printf("%s\n", so_name);
+					myargs[3] = NULL;
+					
+					int pidd = fork();
+					if (pidd == -1){
+						perror("fork error!\n");
+						exit(1);
+					}else if (pidd == 0){
+						execvp(myargs[0], myargs);
+					}else{
+						wait(NULL);
+					}
+					
 				}else{
 					strcpy(func_list[N], name);
 					++N;
 				}
 				
-				char* myargs[20];
-				myargs[0] = strdup("rm");
-				myargs[1] = strdup("-f");
-				myargs[2] = strdup(so_name);
-				printf("%s\n", so_name);
-				myargs[3] = NULL;
-				
-				int pidd = fork();
-				if (pidd == -1){
-					perror("fork error!\n");
-					exit(1);
-				}else if (pidd == 0){
-					execvp(myargs[0], myargs);
-				}else{
-					wait(NULL);
-				}
-
 			}
 		}
 	}
