@@ -91,7 +91,8 @@ int main() {
 				}
 			}else{
 				rand_str(func_name, 5);	strcat(func_name, "_"); strcat(func_name, name);
-				if (write(fd, func_name, strlen(func_name)) == -1 
+				if (write(fd, "int ", 4) == -1||
+					write(fd, func_name, strlen(func_name)) == -1 
 					|| write(fd, "(){return ", 10) == -1
 					|| write(fd, op, strlen(op)) == -1
 					|| write(fd, ";}", 2) == -1){
