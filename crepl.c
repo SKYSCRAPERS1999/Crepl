@@ -66,7 +66,7 @@ int main() {
 				perror("create file error!\n");
 				exit(1);
 			}
-			printf("Temporary file created\n");
+			//printf("Temporary file created\n");
 			
 			if (isf){
 				if (write(fd, op, n) == -1){
@@ -103,7 +103,7 @@ int main() {
 					myargs[7] = strdup("-fPIC");
 					myargs[8] = strdup(filename);
 					myargs[9] = NULL;
-					for (int i = 0; i < 9; i++)	printf("%s\n", myargs[i]);
+					//for (int i = 0; i < 9; i++)	printf("%s\n", myargs[i]);
 					execvp(myargs[0], myargs);
 				    
 				}else{
@@ -119,7 +119,7 @@ int main() {
 					myargs[7] = strdup("-fPIC");
 					myargs[8] = strdup(filename);
 					myargs[9] = NULL;
-					for (int i = 0; i < 9; i++)	printf("%s\n", myargs[i]);
+					//for (int i = 0; i < 9; i++)	printf("%s\n", myargs[i]);
 					execvp(myargs[0], myargs);
 					
 				}
