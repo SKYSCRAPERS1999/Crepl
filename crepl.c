@@ -13,11 +13,10 @@
 #include <math.h>
 
 #define maxn 1024
-char* func_list[maxn];
-char* so_list[maxn];
+char func_list[maxn][50];
 int N = 0;
-
 char* strdup(const char * s);
+
 int is_func(char* s, int n, char* name){
 	int i, j = 0; int ok = 0;
 	char check[50]; sscanf(s, "%s", check);
@@ -165,17 +164,7 @@ int main() {
 					myargs[2] = strdup(so_name);
 					myargs[3] = NULL;
 
-					int pidd = fork();
-					if (pidd == -1){
-						perror("fork error!\n");
-						exit(1);
-					}else if (pidd == 0){
-						execvp(myargs[0], myargs);
-					}else{
-						wait(NULL);
-					}
 				}else{
-					strcpy(so_list[N], so_name);
 					strcpy(func_list[N], name);
 					++N;
 				}
