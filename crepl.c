@@ -68,7 +68,7 @@ int main() {
 			
 			int isf = is_func(op, n, name);
 			if (isf < 0) continue;
-			
+			printf("name = %s\n", name);
 			char filename[50]; strcpy(filename, name);
 			strcpy(filename + strlen(filename), "XXXXXX");
 			
