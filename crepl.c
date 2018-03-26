@@ -13,10 +13,18 @@
 #include <math.h>
 
 #define maxn 1024
-char* strdup(const char * s);
+char* func_list[maxn]; int N = 0;
 
+char* strdup(const char * s);
 int is_func(char* s, int n, char* name){
 	int i, j = 0; int ok = 0;
+	char check[50]; sscanf(s, "%s", check);
+	if (strcmp(check, "ls") == 0 || strcmp(check, "list") == 0){
+		for (int i = 0; i < N; i++){
+			printf("%d: %s\n", i, func_list[i]);
+		}
+		return -1;
+	}
 	for (i = 0; i + 3 < n; i++){
 		if (s[i] == 'i' && s[i + 1] == 'n' && s[i + 2] == 't'){
 			ok = 1; 
@@ -58,6 +66,8 @@ int main() {
 			char func_name[50] = "_expr_";
 			
 			int isf = is_func(op, n, name);
+			if (isf < 0) continue;
+			
 			char filename[50]; strcpy(filename, name);
 			strcpy(filename + strlen(filename), "XXXXXX");
 			
@@ -146,23 +156,24 @@ int main() {
 					int (*func)() = (int (*)())dlsym(handle, func_name); // 查找XXX对应的函数
 					int value = func(); // 通过函数指针调用
 					printf(">> %s%d\n", op, value);	
-					
-					char* myargs[20];
-					myargs[0] = strdup("rm");
-					myargs[1] = strdup("-f");
-					myargs[2] = strdup(so_name);
-					myargs[3] = NULL;
-
-					int pidd = fork();
-					if (pidd == -1){
-						perror("fork error!\n");
-						exit(1);
-					}else if (pidd == 0){
-						execvp(myargs[0], myargs);
-					}else{
-						wait(NULL);
-
-					}
+				}else{
+					strcpy(func_list[N], name);
+					++N;
+				}
+				
+				char* myargs[20];
+				myargs[0] = strdup("rm");
+				myargs[1] = strdup("-f");
+				myargs[2] = strdup(so_name);
+				myargs[3] = NULL;
+				int pidd = fork();
+				if (pidd == -1){
+					perror("fork error!\n");
+					exit(1);
+				}else if (pidd == 0){
+					execvp(myargs[0], myargs);
+				}else{
+					wait(NULL);
 				}
 			}
 		}
