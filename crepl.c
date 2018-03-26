@@ -13,10 +13,11 @@
 #include <math.h>
 
 #define maxn 1024
-char* func_list[maxn]; int N = 0;
-int mkstemp(char *);
-char* strdup(const char*);
+char* func_list[maxn];
+char* so_list[maxn];
+int N = 0;
 
+char* strdup(const char * s);
 int is_func(char* s, int n, char* name){
 	int i, j = 0; int ok = 0;
 	char check[50]; sscanf(s, "%s", check);
@@ -157,12 +158,12 @@ int main() {
 					int (*func)() = (int (*)())dlsym(handle, func_name); // 查找XXX对应的函数
 					int value = func(); // 通过函数指针调用
 					printf(">> %s%d\n", op, value);	
+					
 				}else{
 					strcpy(func_list[N], name);
 					++N;
 				}
-			
-				dlclose(handle);
+				
 				char* myargs[20];
 				myargs[0] = strdup("rm");
 				myargs[1] = strdup("-f");
