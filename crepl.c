@@ -63,7 +63,7 @@ int main() {
 	dup2(fd_null, 2);
 
 	while (1){
-		printf("$ ");
+		printf(">> ");
 		char op[maxn];
 		char* ok = fgets(op, maxn - 1, stdin);
 		if (ok == NULL){
@@ -79,11 +79,13 @@ int main() {
 			char filename[50]; strcpy(filename, name);
 			strcpy(filename + strlen(filename), "XXXXXX");
 			
-			printf("%s\n",filename);
+			//printf("%s\n",filename);
 			int fd = mkstemp(filename);
 			if (fd < 0){
 				perror("create file error!\n");
 				exit(1);
+			}else{
+				printf("%s created\n", name);
 			}
 			//printf("Temporary file created\n");
 			
