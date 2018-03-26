@@ -117,7 +117,7 @@ int main() {
 				close(fd);
 				//printf("name = %s\n\n", name);
 				void* handle = dlopen(strcat(name, ".so"), RTLD_NOW|RTLD_GLOBAL);
-				if (!handle) {
+				if (handle == NULL) {
 					perror("open error!\n");
 					exit(1);
 				}
