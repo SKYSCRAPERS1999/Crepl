@@ -161,7 +161,8 @@ int main() {
 					strcpy(func_list[N], name);
 					++N;
 				}
-				
+			
+				dlclose(handle);
 				char* myargs[20];
 				myargs[0] = strdup("rm");
 				myargs[1] = strdup("-f");
