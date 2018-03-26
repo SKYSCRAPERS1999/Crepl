@@ -144,7 +144,7 @@ int main() {
 				if (!isf){
 					int (*func)() = (int (*)())dlsym(handle, func_name); // 查找XXX对应的函数
 					int value = func(); // 通过函数指针调用
-					printf(">> %s = %d.\n", op, value);	
+					printf(">> %s%d.\n", op, value);	
 				}
 			}
 
