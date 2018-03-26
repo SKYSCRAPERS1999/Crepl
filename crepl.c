@@ -112,6 +112,7 @@ int main() {
 
 			}else{
 				wait(NULL);
+				printf("name = %s\n\n", name);
 				void* handle = dlopen(strcat(name, ".so"), RTLD_LAZY);
 				if (!handle) {
 					perror("open error!\n");
