@@ -14,8 +14,9 @@
 
 #define maxn 1024
 char* func_list[maxn]; int N = 0;
+int mkstemp(char *);
+char* strdup(const char*);
 
-char* strdup(const char * s);
 int is_func(char* s, int n, char* name){
 	int i, j = 0; int ok = 0;
 	char check[50]; sscanf(s, "%s", check);
