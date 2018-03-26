@@ -167,6 +167,7 @@ int main() {
 				myargs[0] = strdup("rm");
 				myargs[1] = strdup("-f");
 				myargs[2] = strdup(so_name);
+				printf("%s\n", so_name);
 				myargs[3] = NULL;
 				
 				int pidd = fork();
