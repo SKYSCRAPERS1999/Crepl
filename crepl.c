@@ -49,7 +49,7 @@ int is_func(char* s, int n, char* name){
 char* rand_str(char *str, const int len){
     int i; char s[50];
     for (i = 0; i < len; ++i) s[i] = 'A' + rand() % 26;
-    s[++i]= '\0';
+    s[i]= '\0';
 	strcat(str, s);
 	return str;
 }
