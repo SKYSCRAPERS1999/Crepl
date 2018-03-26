@@ -48,7 +48,7 @@ int is_func(char* s, int n, char* name){
 
 char* rand_str(char *str, const int len){
     int i; char s[50];
-    for (i = 0; i < len; ++i) s[i]= 'A' + rand() % 26;
+    for (i = 0; i < len; ++i) s[i]= 'A' + rand() % 20;
     s[++i]= '\0';
 	strcat(str, s);
     return str;
@@ -89,9 +89,7 @@ int main() {
 					exit(1);
 				}
 			}else{
-				rand_str(func_name, 5);	
-				printf("%s\n", func_name);	
-				strcat(func_name, "_"); strcat(func_name, name);
+				rand_str(func_name, 5);	strcat(func_name, "_"); strcat(func_name, name);
 				if (write(fd, func_name, strlen(func_name)) == -1 
 					|| write(fd, "(){return ", 10) == -1
 					|| write(fd, op, strlen(op)) == -1
