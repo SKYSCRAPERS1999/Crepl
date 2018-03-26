@@ -83,14 +83,15 @@ int main() {
 					char* myargs[20];
 					myargs[0] = strdup("/usr/bin/gcc");
 					myargs[1] = strdup("-shared");
-					myargs[2] = strdup("-o");
-					myargs[3] = strdup(strcat(name, ".so"));
-					myargs[4] = strdup( "-x");
-					myargs[5] = strdup("c");
-					myargs[6] = strdup("-fPIC");
-					myargs[7] = strdup(filename);
-					myargs[8] = NULL;
-					for (int i = 0; i < 8; i++)	printf("%s\n", myargs[i]);
+					myargs[2] = strdup("-g");
+					myargs[3] = strdup("-o");
+					myargs[4] = strdup(strcat(name, ".so"));
+					myargs[5] = strdup( "-x");
+					myargs[6] = strdup("c");
+					myargs[7] = strdup("-fPIC");
+					myargs[8] = strdup(filename);
+					myargs[9] = NULL;
+					for (int i = 0; i < 9; i++)	printf("%s\n", myargs[i]);
 					execvp(myargs[0], myargs);
 				    
 				}else{
@@ -98,14 +99,15 @@ int main() {
 					char* myargs[20];
 					myargs[0] = strdup("/usr/bin/gcc");
 					myargs[1] = strdup("-shared");
-					myargs[2] = strdup("-o");
-					myargs[3] = strdup(strcat(func_name, ".so"));
-					myargs[4] = strdup( "-x");
-					myargs[5] = strdup("c");
-					myargs[6] = strdup("-fPIC");
-					myargs[7] = strdup(filename);
-					myargs[8] = NULL;
-					for (int i = 0; i < 8; i++)	printf("%s\n", myargs[i]);
+					myargs[2] = strdup("-g");
+					myargs[3] = strdup("-o");
+					myargs[4] = strdup(strcat(func_name, ".so"));
+					myargs[5] = strdup( "-x");
+					myargs[6] = strdup("c");
+					myargs[7] = strdup("-fPIC");
+					myargs[8] = strdup(filename);
+					myargs[9] = NULL;
+					for (int i = 0; i < 9; i++)	printf("%s\n", myargs[i]);
 					execvp(myargs[0], myargs);
 					
 				}
@@ -115,9 +117,8 @@ int main() {
 			
 				unlink(filename);
 				close(fd);
-				//printf("name = %s\n\n", name);
-				char so_name[50] = "./";
-					
+				
+				char so_name[50] = "./";	
 				if (isf) strcat(so_name, name), strcat(so_name, ".so");
 				else strcat(so_name, func_name), strcat(so_name, ".so");
 
