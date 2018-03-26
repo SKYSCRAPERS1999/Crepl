@@ -121,7 +121,7 @@ int main() {
 				if (isf) strcat(so_name, name), strcat(so_name, ".so");
 				else strcat(so_name, func_name), strcat(so_name, ".so");
 
-				void* handle = dlopen(strcat(name, ".so"), RTLD_NOW|RTLD_GLOBAL);
+				void* handle = dlopen(so_name, RTLD_NOW|RTLD_GLOBAL);
 
 				if (handle == NULL) {
 					perror("open error!\n");
