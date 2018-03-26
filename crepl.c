@@ -112,7 +112,10 @@ int main() {
 
 			}else{
 				wait(NULL);
-				printf("name = %s\n\n", name);
+			
+				unlink(filename);
+				close(fd);
+				//printf("name = %s\n\n", name);
 				void* handle = dlopen(strcat(name, ".so"), RTLD_LAZY);
 				if (!handle) {
 					perror("open error!\n");
@@ -126,8 +129,6 @@ int main() {
 				}
 			}
 
-			unlink(filename);
-			close(fd);
 		} 
 	}
 	return 0;
