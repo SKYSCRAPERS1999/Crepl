@@ -58,6 +58,9 @@ char* rand_str(char *str, const int len){
 int main() {
 	
 	srand(time(NULL));
+	
+	int fd_null = open("/dev/null", O_TRUNC|O_RDWR);
+	dup2(fd_null, 2);
 
 	while (1){
 		printf("$ ");
@@ -106,7 +109,7 @@ int main() {
 				perror("fork error!\n");
 				exit(1);
 			} else if (pid == 0){
-				printf("Child: (pid: %d)\n\n", getpid());
+				//printf("Child: (pid: %d)\n\n", getpid());
 				if (isf){
 					char* myargs[20];
 					myargs[0] = strdup("/usr/bin/gcc");
