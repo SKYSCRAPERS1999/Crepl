@@ -116,7 +116,10 @@ int main() {
 				unlink(filename);
 				close(fd);
 				//printf("name = %s\n\n", name);
-				void* handle = dlopen(strcat(name, ".so"), RTLD_NOW|RTLD_GLOBAL);
+				void* handle;
+				if (isf) handle = dlopen(strcat(name, ".so"), RTLD_NOW|RTLD_GLOBAL);
+				else handle = dlopen(strcat(func_name, ".so"), RTLD_NOW | RTLD_GLOBAL); 
+
 				if (handle == NULL) {
 					perror("open error!\n");
 					exit(1);
