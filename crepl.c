@@ -112,8 +112,8 @@ int main() {
 				exit(1);
 			} else if (pid == 0){
 				//printf("Child: (pid: %d)\n\n", getpid());
+				
 				char* myargs[20];
-			
 				if (isf){
 					myargs[0] = strdup("/usr/bin/gcc");
 					myargs[1] = strdup("-shared");
@@ -127,7 +127,6 @@ int main() {
 					myargs[9] = NULL;
 					//for (int i = 0; i < 9; i++)	printf("%s\n", myargs[i]);
 				}else{
-					char* myargs[20];
 					myargs[0] = strdup("/usr/bin/gcc");
 					myargs[1] = strdup("-shared");
 					myargs[2] = strdup("-g");
