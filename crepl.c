@@ -51,7 +51,7 @@ char* rand_str(char *str, const int len){
     for (i = 0; i < len; ++i) s[i]= 'A' + rand() % 26;
     s[++i]= '\0';
 	strcat(str, s);
-	printf("%s\n", str);
+	printf("%s\n\n%s\n\n",s, str);
     return str;
 }
 
