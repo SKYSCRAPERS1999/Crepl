@@ -84,15 +84,14 @@ int main() {
 			if (fd < 0){
 				perror("create file error!\n");
 				exit(1);
-			}else{
-				printf("%s created\n", name);
 			}
 			//printf("Temporary file created\n");
-			
 			if (isf){
 				if (write(fd, op, n) == -1){
 					perror("write error!\n");
 					exit(1);
+				}else{
+					printf("%s created\n", name);
 				}
 			}else{
 				rand_str(func_name, 5);	strcat(func_name, "_"); strcat(func_name, name);
@@ -104,9 +103,8 @@ int main() {
 					perror("write error!\n");
 					exit(1);
 				}
-
 			}
-			int pid = fork(); int cc_ok = 0;
+			int pid = fork(); 
 			if (pid == -1){
 				perror("fork error!\n");
 				exit(1);
@@ -139,18 +137,13 @@ int main() {
 					myargs[9] = NULL;
 					//for (int i = 0; i < 9; i++)	printf("%s\n", myargs[i]);
 				}
-				cc_ok = execvp(myargs[0], myargs);
+				execvp(myargs[0], myargs);
 			
 			}else{
 				wait(NULL);
 				
 				unlink(filename);
 				close(fd);
-				
-				if (cc_ok == -1){
-					perror(">> compile error!\n");
-					continue;
-				}
 				
 				char so_name[50] = "./";	
 				if (isf) strcat(so_name, name), strcat(so_name, ".so");
