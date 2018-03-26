@@ -21,7 +21,7 @@ int is_func(char* s, int n, char* name){
 	int i, j = 0; int ok = 0;
 	char check[50]; sscanf(s, "%s", check);
 	if (strcmp(check, "ls") == 0 || strcmp(check, "list") == 0){
-		for (int i = 0; i < N; i++){
+		for (i = 0; i < N; i++){
 			printf("%d: %s\n", i, func_list[i]);
 		}
 		return -1;
