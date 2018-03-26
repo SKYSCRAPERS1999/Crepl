@@ -35,6 +35,15 @@ int is_func(char* s, int n, char* name){
 	}
 	return 0;
 }
+
+char* rand_str(char *str, const int len){
+    int i; char s[50];
+    for (i = 0; i < len; ++i) s[i]= 'A' + rand() % 26;
+    s[++i]= '\0';
+	strcat(str, s);
+    return str;
+}
+
 int main() {
 	while (1){
 		printf("$ ");
@@ -44,7 +53,9 @@ int main() {
 			puts("");
 			continue;
 		}else{
-		    int n = strlen(op); char name[50]; char func_name[100] = "_expr";
+		    int n = strlen(op); char name[50]; 
+			char func_name[50] = "_expr_";
+			
 			int isf = is_func(op, n, name);
 			char filename[50]; strcpy(filename, name);
 			strcpy(filename + strlen(filename), "XXXXXX");
@@ -63,7 +74,8 @@ int main() {
 					exit(1);
 				}
 			}else{
-				strcpy(func_name + strlen(func_name), name);
+				rand_str(func_name, 5);	strcat(func_name, "_"); strcat(func_name, name);
+				
 				if (write(fd, func_name, strlen(func_name)) == -1 
 					|| write(fd, "(){return ", 10) == -1
 					|| write(fd, op, strlen(op)) == -1
