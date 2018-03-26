@@ -44,7 +44,7 @@ int main() {
 			puts("");
 			continue;
 		}else{
-		    int n = strlen(op); char name[50];
+		    int n = strlen(op); char name[50]; char func_name[100] = "_expr";
 			int isf = is_func(op, n, name);
 			char filename[50]; strcpy(filename, name);
 			strcpy(filename + strlen(filename), "XXXXXX");
@@ -57,9 +57,21 @@ int main() {
 			}
 			printf("Temporary file created\n");
 			
-			if (write(fd, op, n) == -1){
-				perror("write error!\n");
-				exit(1);
+			if (isf){
+				if (write(fd, op, n) == -1){
+					perror("write error!\n");
+					exit(1);
+				}
+			}else{
+				strcpy(func_name + strlen(func_name), name);
+				if (write(fd, func_name, strlen(func_name)) == -1 
+					|| write(fd, "(){return ", 10) == -1
+					|| write(fd, op, strlen(op)) == -1
+					|| write(fd, ";}", 2) == -1){
+					perror("write error!\n");
+					exit(1);
+				}
+
 			}
 			int pid = fork();
 			if (pid == -1){
@@ -82,18 +94,35 @@ int main() {
 					execvp(myargs[0], myargs);
 				    
 				}else{
-					wait(NULL);	
-					void* handle = dlopen(strcat(name, ".so"), RTLD_LAZY);
-					if (!handle) {
-		                perror("open error!\n");
-						exit(1);
-		            }
+					
+					char* myargs[20];
+					myargs[0] = strdup("/usr/bin/gcc");
+					myargs[1] = strdup("-shared");
+					myargs[2] = strdup("-o");
+					myargs[3] = strdup(strcat(func_name, ".so"));
+					myargs[4] = strdup( "-x");
+					myargs[5] = strdup("c");
+					myargs[6] = strdup("-fPIC");
+					myargs[7] = strdup(filename);
+					myargs[8] = NULL;
+					for (int i = 0; i < 8; i++)	printf("%s\n", myargs[i]);
+					execvp(myargs[0], myargs);
+					
 				}
 
 			}else{
 				wait(NULL);
+				void* handle = dlopen(strcat(name, ".so"), RTLD_LAZY);
+				if (!handle) {
+					perror("open error!\n");
+					exit(1);
+				}
 				
-
+				if (!isf){
+					int (*func)() = (int (*)())dlsym(handle, func_name); // 查找XXX对应的函数
+					int value = func(); // 通过函数指针调用
+					printf(">> %s = %d.\n", op, value);	
+				}
 			}
 
 			unlink(filename);
